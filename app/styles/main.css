@@ -118,3 +118,8 @@ h1 {
   background: url(/public/images/cool.png) at-2x,
               url(http://example.com/flowers-pattern.jpg) at-2x;
 }
+
+.flex {
+  display: flex;
+  align-items: center;
+}
