@@ -23,7 +23,7 @@ This repo clone from [webapp](https://github.com/yeoman/generator-webapp) with s
 * [postcss-at2x](https://github.com/simonsmith/postcss-at2x): A port of rework-at2x with some extra touches.
 * [postcss-custom-media](https://github.com/postcss/postcss-custom-media): PostCSS plugin to transform W3C CSS Custom Media Queries syntax to more compatible CSS.
 
-Install only once:
+Install once:
 
 ```
 npm i -D gulp-postcss precss autoprefixer postcss-bem cssnano stylelint postcss-font-magician postcss-pxtorem postcss-at2x postcss-custom-media
