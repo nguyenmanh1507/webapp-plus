@@ -51,7 +51,7 @@ gulp.task('styles', () => {
         // cssnano
       ]
   ;
-  return gulp.src('app/styles/app.css')
+  return gulp.src('app/styles/main.css')
     .pipe($.plumber())
     .pipe($.sourcemaps.init())
     .pipe($.postcss(processors))
