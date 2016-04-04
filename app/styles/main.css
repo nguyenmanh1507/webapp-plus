@@ -92,3 +92,7 @@ $column: 200px;
         display: block;
     }
 }
+
+body {
+   font-family: "Alice";
+}
