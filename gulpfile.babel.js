@@ -4,6 +4,7 @@ import gulpLoadPlugins from 'gulp-load-plugins';
 import browserSync from 'browser-sync';
 import del from 'del';
 import {stream as wiredep} from 'wiredep';
+import autoprefixer from 'autoprefixer';
 
 const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
@@ -17,13 +18,57 @@ gulp.task('views', () => {
 });
 
 gulp.task('styles', () => {
-  return gulp.src('app/styles/*.css')
+  let bem = require('postcss-bem'),
+      precss = require('precss'),
+      cssnano = require('cssnano'),
+      fontMagician = require('postcss-font-magician'),
+      pxtorem = require('postcss-pxtorem'),
+      nested = require('postcss-nested'),
+      at2x = require('postcss-at2x'),
+      customMedia = require('postcss-custom-media'),
+      processors = [
+        precss,
+        bem({
+          style: 'bem',
+          separators: {
+            modifier: '--'
+          },
+          shortcuts: {
+            component: 'b',
+            descendent: 'e',
+            modifier: 'm'
+          }
+        }),
+        nested,
+        fontMagician,
+        pxtorem({
+          replace: true,
+          propWhiteList: []
+        }),
+        customMedia,
+        at2x,
+        autoprefixer,
+        // cssnano
+      ]
+  ;
+  return gulp.src('app/styles/app.css')
+    .pipe($.plumber())
     .pipe($.sourcemaps.init())
-    .pipe($.autoprefixer({browsers: ['> 1%', 'last 2 versions', 'Firefox ESR']}))
+    .pipe($.postcss(processors))
     .pipe($.sourcemaps.write())
     .pipe(gulp.dest('.tmp/styles'))
-    .pipe(reload({stream: true}));
+    .pipe(reload({stream: true}))
+  ;
 });
+
+// gulp.task('styles', () => {
+//   return gulp.src('app/styles/*.css')
+//     .pipe($.sourcemaps.init())
+//     .pipe($.autoprefixer({browsers: ['> 1%', 'last 2 versions', 'Firefox ESR']}))
+//     .pipe($.sourcemaps.write())
+//     .pipe(gulp.dest('.tmp/styles'))
+//     .pipe(reload({stream: true}));
+// });
 
 gulp.task('scripts', () => {
   return gulp.src('app/scripts/**/*.js')
