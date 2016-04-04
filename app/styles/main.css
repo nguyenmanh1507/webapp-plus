@@ -109,3 +109,12 @@ h1 {
 @media (--small-viewport) {
   /* styles for small viewport */
 }
+
+.logo {
+  background: red url('/public/images/logo.png') no-repeat 0 0 at-2x;
+}
+
+.banner {
+  background: url(/public/images/cool.png) at-2x,
+              url(http://example.com/flowers-pattern.jpg) at-2x;
+}
