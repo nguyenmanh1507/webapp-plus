@@ -1,3 +1,14 @@
+html {
+  font-size: 16px;
+}
+
 body {
-  font-family: 'Open Sans';
+  font: 100%/1.5 'Open Sans', sans-serif;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
 }
